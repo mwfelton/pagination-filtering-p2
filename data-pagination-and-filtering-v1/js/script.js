@@ -21,9 +21,7 @@ function showPage(list, page) {
       studentList.innerHTML = " ";
 
       for (let i = 0; i < list.length; i++){
-         if ( i >= startIndex && i < endIndex){
-            
-            console.log(list[i]);
+         if( i >= startIndex && i < endIndex){
 
                let studentItem = '';
                studentItem  += `
@@ -37,11 +35,17 @@ function showPage(list, page) {
                    <span class="date">Joined ${list[i].registered.date}</span>
                   </div>
                </li>
-            `;
+               `;
+
             studentList.insertAdjacentHTML('beforeend',studentItem);
-         }
-     }
+     } 
+   }
+   if (filteredData.length === 0){
+      noResults()
+   }
  };     
+
+//  Create the Pagination Buttons
  
 function addPagination(list){
 
@@ -71,14 +75,16 @@ function addPagination(list){
    };
 };
 
+
+//  Processes for creating the search filter
+
 let searchQuery = ''
 let filteredData = runDataFilter()
 
 showPage(filteredData, 1);
 addPagination(filteredData);
 
-const submitButton = document.querySelector('button');
-
+// creating the HTML elements for the search bar
 
 const header = document.querySelector('.header');
          let searchBar = '';
@@ -91,29 +97,40 @@ const header = document.querySelector('.header');
       header.insertAdjacentHTML('beforeend',searchBar);
 
 
+// Adding functionality to the search bar
+
 const inputSearch = document.querySelector('#search');
-
-
-// These are my functions to make the search bar work. searchQuery is an empty string variable to contain the user input
-// runDataFilter is a function to take the necessary values from the Data Object Array. It took a lot of searching to figure this out
-// as I kept finding the methods I was more familiar with from the course kept breaking the code somehow.
-// I tried Object.value and made some confused attempts with object literals.
-
-// I found the starts with method on MDN and that in combination with the keyup listener finally got it working.
 
 function searchFilter(){
    searchQuery = inputSearch.value.toLowerCase()
    filteredData = runDataFilter()
    showPage(filteredData, 1);
    addPagination(filteredData);
-};
+   }
  
+// filter the data for the search bar to look through
+
 function runDataFilter() {
-   return data.filter(item => `${item.name.first} ${item.name.last}`.toLowerCase().startsWith(searchQuery))
+   const result = data.filter(item => `${item.name.first} ${item.name.last}`.toLowerCase().includes(searchQuery))
+   return result;
 };
 
 inputSearch.addEventListener('keyup', () => {
-   searchFilter()
+      searchFilter()
   });
 
 
+
+// function for displaying the no results message, called in the showpage function
+
+function noResults(){
+   const studentList = document.querySelector('.student-list');
+   const noResultsMessage =`
+            <li class="student-item cf">
+               <div>
+               <h3>Sorry No Results Found</h3>
+               </div>
+            </li>
+           `
+   studentList.insertAdjacentHTML('beforeend', noResultsMessage)
+}
