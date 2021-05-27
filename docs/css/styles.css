@@ -1,13 +1,18 @@
 /* New FSJS project 2 - List Pagination and Filter - v2 - Data version */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300&family=Mate&display=swap');
+
 
 * {
 	box-sizing: border-box;
 }
 
 body {
-	font-family: 'Montserrat', Helvetica, sans-serif;
+  /* font-family: 'Montserrat', Helvetica, sans-serif; */
+  /* font-family: 'Mate', serif; */
+  font-family: 'Heebo', sans-serif;
+  letter-spacing: 4px;
 	background-color: rgb(229, 238, 250);
   transition: 0.4s;
 }
@@ -35,7 +40,8 @@ header {
 }
 
 header h2 {
-  font-size: 36px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 25px;
   text-transform: uppercase;
   font-weight: 800;
   color: #4a5568;
@@ -92,7 +98,7 @@ header h2 {
   justify-content: space-between;
   padding: 2.5em;
   background-color: #fff;
-  border-radius: 2px;
+  border-radius: 20px;
   -webkit-transition: box-shadow .3s ease;
   transition: box-shadow .3s ease;
 }
@@ -127,7 +133,7 @@ header h2 {
 	font-weight: 600;
   color: #6d778a;
   font-size: 14px;
-  letter-spacing: .5px;
+  letter-spacing: 2px;
 }
 
 .date {
@@ -204,7 +210,7 @@ header h2 {
 	}
 
 	.student-item {
-		border-radius: 5px;
+		border-radius: 20px;
 		box-shadow: 0 4px 16px 0 rgba(22, 42, 90, 0.09);
 	}
 }
